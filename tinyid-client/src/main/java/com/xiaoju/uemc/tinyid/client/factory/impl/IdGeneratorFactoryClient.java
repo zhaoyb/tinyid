@@ -33,6 +33,7 @@ public class IdGeneratorFactoryClient extends AbstractIdGeneratorFactory {
 
     }
 
+    // 用指定的配置文件 初始化配置
     public static IdGeneratorFactoryClient getInstance(String location) {
         if (idGeneratorFactoryClient == null) {
             synchronized (IdGeneratorFactoryClient.class) {
@@ -48,8 +49,15 @@ public class IdGeneratorFactoryClient extends AbstractIdGeneratorFactory {
         return idGeneratorFactoryClient;
     }
 
+    /**
+     *
+     * 初始化配置
+     *
+     * @param location
+     */
     private static void init(String location) {
         idGeneratorFactoryClient = new IdGeneratorFactoryClient();
+        // 加载配置文件
         Properties properties = PropertiesLoader.loadProperties(location);
         String tinyIdToken = properties.getProperty("tinyid.token");
         String tinyIdServer = properties.getProperty("tinyid.server");

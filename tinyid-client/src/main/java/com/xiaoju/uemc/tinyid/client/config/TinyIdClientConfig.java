@@ -4,13 +4,19 @@ import java.util.List;
 
 /**
  * @author du_imba
+ *
+ * ID 配置类
+ *
  */
 public class TinyIdClientConfig {
 
     private String tinyIdToken;
     private String tinyIdServer;
+    // server 地址列表
     private List<String> serverList;
+    // http 读超时时间
     private Integer readTimeout;
+    // http 连接超时时间
     private Integer connectTimeout;
 
     private volatile static TinyIdClientConfig tinyIdClientConfig;

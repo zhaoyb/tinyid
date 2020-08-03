@@ -16,6 +16,13 @@ public class TinyId {
 
     }
 
+    /**
+     *
+     * 根据bizType获取ID，  其实 就是一个bizType 对应一个IdGenerator
+     *
+     * @param bizType
+     * @return
+     */
     public static Long nextId(String bizType) {
         if(bizType == null) {
             throw new IllegalArgumentException("type is null");
@@ -24,6 +31,14 @@ public class TinyId {
         return idGenerator.nextId();
     }
 
+    /**
+     *
+     * 一次获取一批
+     *
+     * @param bizType
+     * @param batchSize
+     * @return
+     */
     public static List<Long> nextId(String bizType, Integer batchSize) {
         if(batchSize == null) {
             Long id = nextId(bizType);

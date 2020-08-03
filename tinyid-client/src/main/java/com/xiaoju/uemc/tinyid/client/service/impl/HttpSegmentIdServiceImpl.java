@@ -19,6 +19,7 @@ public class HttpSegmentIdServiceImpl implements SegmentIdService {
 
     @Override
     public SegmentId getNextSegmentId(String bizType) {
+        // server url , 随机选择一个服务器
         String url = chooseService(bizType);
         String response = TinyIdHttpUtils.post(url, TinyIdClientConfig.getInstance().getReadTimeout(),
                 TinyIdClientConfig.getInstance().getConnectTimeout());
@@ -27,6 +28,7 @@ public class HttpSegmentIdServiceImpl implements SegmentIdService {
             return null;
         }
         SegmentId segmentId = new SegmentId();
+        // 解析返回结果
         String[] arr = response.split(",");
         segmentId.setCurrentId(new AtomicLong(Long.parseLong(arr[0])));
         segmentId.setLoadingId(Long.parseLong(arr[1]));
@@ -42,6 +44,7 @@ public class HttpSegmentIdServiceImpl implements SegmentIdService {
         if (serverList != null && serverList.size() == 1) {
             url = serverList.get(0);
         } else if (serverList != null && serverList.size() > 1) {
+            // 随机负载
             Random r = new Random();
             url = serverList.get(r.nextInt(serverList.size()));
         }
