@@ -48,6 +48,7 @@ public class DbSegmentIdServiceImpl implements SegmentIdService {
             }
             Long newMaxId = tinyIdInfo.getMaxId() + tinyIdInfo.getStep();
             Long oldMaxId = tinyIdInfo.getMaxId();
+            // 乐观锁控制
             int row = tinyIdInfoDAO.updateMaxId(tinyIdInfo.getId(), newMaxId, oldMaxId, tinyIdInfo.getVersion(),
                     tinyIdInfo.getBizType());
             if (row == 1) {

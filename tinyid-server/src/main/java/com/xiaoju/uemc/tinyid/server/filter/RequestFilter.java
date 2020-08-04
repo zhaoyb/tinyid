@@ -33,6 +33,16 @@ public class RequestFilter implements Filter {
 
     }
 
+    /**
+     *  整体是为了日志输出， 没有什么逻辑
+     *
+     *
+     * @param servletRequest
+     * @param servletResponse
+     * @param filterChain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;

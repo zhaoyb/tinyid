@@ -36,7 +36,9 @@ public class IdContronller {
     @RequestMapping("nextId")
     public Response<List<Long>> nextId(String bizType, Integer batchSize, String token) {
         Response<List<Long>> response = new Response<>();
+        // batchsize 阈值检查
         Integer newBatchSize = checkBatchSize(batchSize);
+        //  权限检查
         if (!tinyIdTokenService.canVisit(bizType, token)) {
             response.setCode(ErrorCode.TOKEN_ERR.getCode());
             response.setMessage(ErrorCode.TOKEN_ERR.getMessage());
